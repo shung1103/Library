@@ -38,7 +38,7 @@ public class User extends TimeStamped {
     @Column(name = "user_rental_able")
     private Boolean userRentalAble;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Rental> rentalList  = new ArrayList<>();
 
     public User(String username, String password, String email, UserRoleEnum role, Boolean userRentalAble) {

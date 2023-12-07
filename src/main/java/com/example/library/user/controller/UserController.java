@@ -69,13 +69,6 @@ public class UserController {
         return userService.getUserList();
     }
 
-    @Transactional
-    @Operation(summary = "회원 정보 조회")
-    @GetMapping("/info")
-    public ResponseEntity<UserResponseDto> getUserInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return userService.getUserInfo(userDetails.getUser());
-    }
-
     @Operation(summary = "회원 탈퇴")
     @DeleteMapping("/signout")
     public ResponseEntity<ApiResponseDto> signout(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody PasswordRequestDto passwordRequestDto,

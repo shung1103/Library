@@ -101,10 +101,6 @@ public class UserService {
         return ResponseEntity.status(HttpStatus.OK).body(userResponseDtoList);
     }
 
-    public ResponseEntity<UserResponseDto> getUserInfo(User user) {
-        return ResponseEntity.status(HttpStatus.OK).body(new UserResponseDto(user));
-    }
-
     public ResponseEntity<ApiResponseDto> signout(User user, PasswordRequestDto passwordRequestDto, HttpServletResponse response, Authentication authResult) throws ServletException, IOException {
         if (passwordEncoder.matches(passwordRequestDto.getPassword(), user.getPassword())) {
             userRepository.delete(user);
