@@ -34,7 +34,7 @@ public class Book extends TimeStamped {
     @Column(name = "book_rental_able", nullable = false)
     private Boolean bookRentalAble;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book", cascade = CascadeType.PERSIST)
     private List<Rental> rentalList  = new ArrayList<>();
 
     public Book(BookRequestDto bookRequestDto) {
