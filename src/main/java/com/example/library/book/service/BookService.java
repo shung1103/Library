@@ -7,6 +7,8 @@ import com.example.library.book.repository.BookRepository;
 import com.example.library.common.aws.AwsS3Service;
 import com.example.library.common.dto.ApiResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ public class BookService {
     private final BookRepository bookRepository;
     private final AwsS3Service awsS3Service;
 
+    @CacheEvict(value = "Books", allEntries = true, cacheManager = "bookCacheManager")
     public BookResponseDto createBook(BookRequestDto bookRequestDto) {
         // 책 이름 중복 확인
         if (bookRepository.findByBookName(bookRequestDto.getBookName()).isPresent()) {
@@ -30,6 +33,7 @@ public class BookService {
         }
     }
 
+    @Cacheable(value = "Books", cacheManager = "bookCacheManager")
     public List<BookResponseDto> getBookList() {
         List<Book> bookList = bookRepository.findAllByOrderByBookNameDesc();
         List<BookResponseDto> bookResponseDtoList = new ArrayList<>();
@@ -41,11 +45,13 @@ public class BookService {
         return bookResponseDtoList;
     }
 
+    @Cacheable(value = "Books", key = "#bookNo", cacheManager = "bookCacheManager")
     public BookResponseDto getBookInfo(Long bookNo) {
         Book book = bookRepository.findById(bookNo).orElseThrow(() -> new NullPointerException("해당 번호의 도서가 존재하지 않습니다."));
         return new BookResponseDto(book);
     }
 
+    @CacheEvict(value = "Books", allEntries = true, cacheManager = "bookCacheManager")
     public BookResponseDto updateBookInfo(Long bookNo, BookRequestDto bookRequestDto) {
         Book book = bookRepository.findById(bookNo).orElseThrow(() -> new NullPointerException("해당 번호의 도서가 존재하지 않습니다."));
 
@@ -54,6 +60,7 @@ public class BookService {
         return new BookResponseDto(book);
     }
 
+    @CacheEvict(value = "Books", allEntries = true, cacheManager = "bookCacheManager")
     public ApiResponseDto deleteBookInfo(Long bookNo) {
         Book book = bookRepository.findById(bookNo).orElseThrow(() -> new NullPointerException("해당 번호의 도서가 존재하지 않습니다."));
         bookRepository.delete(book);

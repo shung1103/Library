@@ -1,5 +1,6 @@
 package com.example.library.config;
 
+import com.example.library.common.RedisRefreshTokenRepository;
 import com.example.library.common.security.JwtAuthenticationFilter;
 import com.example.library.common.security.JwtAuthorizationFilter;
 import com.example.library.common.security.JwtUtil;
@@ -18,6 +19,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -30,6 +32,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
     private final UserDetailsServiceImpl userDetailsService;
     private final AuthenticationConfiguration authenticationConfiguration;
     private final UserService userService;
+    private final RedisRefreshTokenRepository redisRefreshTokenRepository;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
@@ -45,7 +48,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
 
     @Bean
     public JwtAuthorizationFilter jwtAuthorizationFilter() {
-        return new JwtAuthorizationFilter(jwtUtil, userDetailsService, userService);
+        return new JwtAuthorizationFilter(jwtUtil, userDetailsService, redisRefreshTokenRepository, userService);
     }
 
     @Bean
