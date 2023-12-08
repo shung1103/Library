@@ -90,7 +90,7 @@ Swagger 연동으로 대체. 실행 후 http://localhost:8080/swagger-ui/index.h
 
 <h2>⚙️서비스 아키텍처</h2>
 <p align="center">
-  ![267603749-6d9e5d0d-3196-4ba6-8464-83a8caf078fa](https://github.com/shung1103/Library/assets/133616029/73a52dc7-9afd-4f41-a471-3b84e27eaf13)
+  https://github.com/shung1103/Library/assets/133616029/73a52dc7-9afd-4f41-a471-3b84e27eaf13
 </p>
 
 <br>
