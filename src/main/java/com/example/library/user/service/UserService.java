@@ -3,10 +3,7 @@ package com.example.library.user.service;
 import com.example.library.common.dto.ApiResponseDto;
 import com.example.library.common.entity.UserRoleEnum;
 import com.example.library.common.security.JwtUtil;
-import com.example.library.user.dto.LoginRequestDto;
-import com.example.library.user.dto.PasswordRequestDto;
-import com.example.library.user.dto.SignupRequestDto;
-import com.example.library.user.dto.UserResponseDto;
+import com.example.library.user.dto.*;
 import com.example.library.user.entity.User;
 import com.example.library.user.repository.UserRepository;
 import jakarta.servlet.ServletException;
@@ -99,6 +96,20 @@ public class UserService {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(userResponseDtoList);
+    }
+
+    public ResponseEntity<UserResponseDto> getUserInfo(User user) {
+        User user1 = userRepository.findById(user.getId()).orElseThrow(() -> new NullPointerException("존재하지 않는 유저 정보입니다."));
+        UserResponseDto userResponseDto = new UserResponseDto(user1);
+        return ResponseEntity.status(HttpStatus.OK).body(userResponseDto);
+    }
+
+    public ResponseEntity<UserResponseDto> updateUserInfo(User user, UserRequestDto userRequestDto) {
+        User user1 = userRepository.findById(user.getId()).orElseThrow(() -> new NullPointerException("존재하지 않는 유저 정보입니다."));
+        user1.update(userRequestDto);
+        userRepository.save(user1);
+        UserResponseDto userResponseDto = new UserResponseDto(user1);
+        return ResponseEntity.status(HttpStatus.OK).body(userResponseDto);
     }
 
     public ResponseEntity<ApiResponseDto> signout(User user, PasswordRequestDto passwordRequestDto, HttpServletResponse response, Authentication authResult) throws ServletException, IOException {

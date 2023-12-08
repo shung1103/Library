@@ -3,6 +3,7 @@ package com.example.library.user.entity;
 import com.example.library.common.entity.TimeStamped;
 import com.example.library.common.entity.UserRoleEnum;
 import com.example.library.rental.entity.Rental;
+import com.example.library.user.dto.UserRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,5 +48,10 @@ public class User extends TimeStamped {
         this.email = email;
         this.role = role;
         this.userRentalAble = userRentalAble;
+    }
+
+    public void update(UserRequestDto userRequestDto) {
+        this.email = userRequestDto.getEmail();
+        this.userRentalAble = userRequestDto.getUserRentalAble();
     }
 }

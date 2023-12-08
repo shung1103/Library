@@ -2,10 +2,7 @@ package com.example.library.user.controller;
 
 import com.example.library.common.dto.ApiResponseDto;
 import com.example.library.common.security.UserDetailsImpl;
-import com.example.library.user.dto.LoginRequestDto;
-import com.example.library.user.dto.PasswordRequestDto;
-import com.example.library.user.dto.SignupRequestDto;
-import com.example.library.user.dto.UserResponseDto;
+import com.example.library.user.dto.*;
 import com.example.library.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -67,6 +64,18 @@ public class UserController {
     @GetMapping("/info-list")
     public ResponseEntity<List<UserResponseDto>> getUserList() {
         return userService.getUserList();
+    }
+
+    @Operation(summary = "회원 정보 조회")
+    @GetMapping("/info")
+    public ResponseEntity<UserResponseDto> getUserInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return userService.getUserInfo(userDetails.getUser());
+    }
+
+    @Operation(summary = "회원 정보 수정")
+    @PutMapping("/info")
+    public ResponseEntity<UserResponseDto> updateUserInfo(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody UserRequestDto userRequestDto) {
+        return userService.updateUserInfo(userDetails.getUser(), userRequestDto);
     }
 
     @Operation(summary = "회원 탈퇴")

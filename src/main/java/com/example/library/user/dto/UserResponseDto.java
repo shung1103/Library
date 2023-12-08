@@ -13,12 +13,14 @@ public class UserResponseDto {
     private String username;
     private UserRoleEnum role;
     private String email;
+    private Boolean userRentalAble;
     private List<RentalResponseDto> rentalList;
 
     public UserResponseDto(User user) {
         this.username = user.getUsername();
         this.role = user.getRole();
         this.email = user.getEmail();
+        this.userRentalAble = user.getUserRentalAble();
         this.rentalList = user.getRentalList().stream().map(RentalResponseDto::new).collect(Collectors.toList());
     }
 }
