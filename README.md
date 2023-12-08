@@ -49,8 +49,8 @@
 
 ## ERD
 
+![ERD 스크린샷](https://github.com/shung1103/Library/assets/133616029/c7a999c1-c61c-4873-b78a-ef53e671346a)
 
-  
 <br>
 
 ## 테이블 정의서
