@@ -1,0 +1,75 @@
+AWS 내부 구축 내용
+
+1.자바 설치
+
+$ sudo apt update
+- 패키지의 정보를 최신 상태로 업데이트
+
+$ sudo apt install openjdk-17-jre-headless
+- 자바 파일을 실행하기 위한 jdk 설치
+
+$ java -version
+- jdk 버전 확인
+
+$ sudo apt-get update
+$ sudo apt-get upgrade
+- 패키지 정보 최신화
+
+
+
+2.Redis 설치
+
+$ sudo apt-get install redis-server
+- redis 설치
+
+$ redis-server --version
+- redis 버전 확인
+
+$ sudo nano /etc/redis/redis.conf
+- redis 메모리 사용 정책 설정
+
+$ maxmemory 1g
+- 최대 사용 메모리양
+$ maxmemory-policy allkeys-lru
+- 최대 사용 메모리양을 초과할 시 가장 오래된 메모리를 삭제
+
+$ sudo systemctl restart redis-server.service
+- 설정적용을 위한 redis 재시작
+
+$ redis-cli
+$ keys *
+- 레디스 정상 동작 확인
+
+
+
+3.MySQL 설치
+
+$ sudo apt-get install mysql-server
+
+$ sudo ufw allow mysql
+- 포트 3306을 오픈하여 외부 접속 기능 설정
+
+$ sudo systemctl start mysql
+$ sudo systemctl enable mysql
+- MySQL 실행 및 서버 재시작 시 자동 재시작
+
+$ sudo /usr/bin/mysql -u root -p
+- MySQL 접속하여 정상 동작 확인
+
+mysql> SELECT User, Host, authentication_string FROM mysql.user;
+- 사용자 정보 확인
+
+mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('바꿀비번');
+- MySQL 비밀번호 설정
+
+
+
+4.스프링 부트 앱 클론
+
+git clone https://github.com/shung1103/Library.git
+
+sudo chmod +x gradlew
+$ ./gradlew clean build -x test
+$ cd build/libs/
+$ nohup java -jar [빌드된 jar 파일 이름] &
+- 백그라운드로 앱 실행
