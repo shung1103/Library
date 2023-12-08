@@ -47,13 +47,6 @@
 
 <br>
 
-<h2>⚙️서비스 아키텍처</h2>
-<p align="center">
-  <img src="https://github.com/burger-drop/burger-drop-repo/assets/94231335/6d9e5d0d-3196-4ba6-8464-83a8caf078fa" style="margin-right: 10px;">
-</p>
-
-<br>
-
 ## ERD
 
 
@@ -66,7 +59,6 @@ Swagger 연동으로 대체. 실행 후 http://localhost:8080/swagger-ui/index.h
 
 ![테이블 정의서 Swagger 연동 스크린샷](https://github.com/shung1103/Library/assets/133616029/b0e04f56-3a9f-4c67-adff-0703ba4f4a95)
 
-  - isBefore 함수를 사용하여 사용자가 연체가 되었을 경우 도서 대출이 제한됩니다.
 
 <br>
 
@@ -98,7 +90,7 @@ Swagger 연동으로 대체. 실행 후 http://localhost:8080/swagger-ui/index.h
 
 <h2>⚙️서비스 아키텍처</h2>
 <p align="center">
-  <img src="https://github.com/burger-drop/burger-drop-repo/assets/94231335/6d9e5d0d-3196-4ba6-8464-83a8caf078fa" style="margin-right: 10px;">
+  ![267603749-6d9e5d0d-3196-4ba6-8464-83a8caf078fa](https://github.com/shung1103/Library/assets/133616029/73a52dc7-9afd-4f41-a471-3b84e27eaf13)
 </p>
 
 <br>
