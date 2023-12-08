@@ -57,12 +57,7 @@
 
 Swagger 연동으로 대체. 실행 후 http://localhost:8080/swagger-ui/index.html 로 들어가면 나옵니다.
 
-![스크린샷 2023-12-08 오후 12 43 54](https://github.com/shung1103/Library/assets/133616029/e11c5798-3874-4054-8688-3275b6a377f8)
-
-![스크린샷 2023-12-08 오후 12 44 16](https://github.com/shung1103/Library/assets/133616029/611822f3-6061-4884-abe9-155fa49db9aa)
-
-![스크린샷 2023-12-08 오후 12 44 35](https://github.com/shung1103/Library/assets/133616029/4c443ce5-c588-43b4-b4bd-17efc54c70fb)
-
+![테이블 정의서 Swagger 스크린샷](https://github.com/shung1103/Library/assets/133616029/66a6561f-9031-47b0-b331-92aadf4ec36e)
 
 <br>
 
